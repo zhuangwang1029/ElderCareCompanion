@@ -3,7 +3,7 @@
 ## Developers
 - **Aaron Xu (徐浩然)** - Student ID: 2354171
 - **Wenda Yu (于闻达)** - Student ID: 2354098
-Both are sophomore Software Engineering students at Tongji University. This is their first experience with WeChat Mini Program development, so any feedback or suggestions would be greatly appreciated.
+- Both are sophomore Software Engineering students at Tongji University. This is their first experience with WeChat Mini Program development, so any feedback or suggestions would be greatly appreciated.
 
 ## Project Introduction
 
