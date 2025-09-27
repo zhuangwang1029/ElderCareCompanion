@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "乐晚",
+  "usingComponents": {
+    "cloud-tip-modal": "/components/cloudTipModal/index"
+  }
+}

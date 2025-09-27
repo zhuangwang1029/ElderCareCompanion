@@ -1,0 +1,39 @@
+<!--pages/safety/emergency/location_history/location_history.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">紧急位置历史</view>
+    <text class="subtitle">查看历史紧急位置分享记录</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载位置历史...</text>
+  </view>
+  
+  <!-- 没有历史记录 -->
+  <view class="no-data" wx:elif="{{locations.length === 0}}">
+    <text class="no-data-icon">📍</text>
+    <text>暂无紧急位置历史</text>
+    <text class="hint">使用紧急求助功能时会记录位置信息</text>
+  </view>
+  
+  <!-- 位置历史列表 -->
+  <view class="location-list" wx:else>
+    <view class="location-item" wx:for="{{locations}}" wx:key="timestamp" bindtap="viewLocation" data-index="{{index}}">
+      <view class="location-icon">📍</view>
+      <view class="location-info">
+        <view class="location-address">{{item.address || '未知位置'}}</view>
+        <view class="location-time">{{item.formattedTime}}</view>
+      </view>
+      <view class="location-arrow">▶</view>
+    </view>
+  </view>
+  
+  <view class="tips">
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>点击位置记录可查看地图</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/health/medicine/medicine",
+    "pages/safety/emergency/emergency",
+    "pages/health/diary/diary",
+    "pages/social/call/call",
+    "pages/profile/profile",
+    "pages/profile/health_data/health_data",
+    "pages/health/medicine/add_medicine/add_medicine",
+    "pages/health/diary/history/history",
+    "pages/health/medicine/reminder/reminder",
+    "pages/health/medicine/reminders/reminders",
+    "pages/health/trends/trends",
+    "pages/safety/emergency/add_contact/add_contact",
+    "pages/social/call/add_contact/add_contact",
+    "pages/profile/settings/settings",
+    "pages/safety/emergency/location_history/location_history",
+    "pages/profile/about/about",
+    "pages/assistant/assistant",
+    "pages/safety/emergency/location/location"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "长辈关爱助手",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab/home.png",
+        "selectedIconPath": "images/tab/home_selected.png"
+      },
+      {
+        "pagePath": "pages/health/medicine/medicine",
+        "text": "服药",
+        "iconPath": "images/tab/medicine.png",
+        "selectedIconPath": "images/tab/medicine_selected.png"
+      },
+      {
+        "pagePath": "pages/safety/emergency/emergency",
+        "text": "求助",
+        "iconPath": "images/tab/emergency.png",
+        "selectedIconPath": "images/tab/emergency_selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab/profile.png",
+        "selectedIconPath": "images/tab/profile_selected.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于紧急情况下发送给您的紧急联系人"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

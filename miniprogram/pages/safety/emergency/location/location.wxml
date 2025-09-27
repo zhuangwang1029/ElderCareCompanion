@@ -1,0 +1,60 @@
+<!--pages/safety/emergency/location/location.wxml-->
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>正在加载位置信息...</text>
+  </view>
+  
+  <block wx:else>
+    <!-- 紧急提示 -->
+    <view class="emergency-alert">
+      <text class="alert-icon">🚨</text>
+      <text class="alert-text">紧急求助</text>
+      <text class="alert-time">{{receivedTime}}</text>
+    </view>
+    
+    <!-- 位置信息 -->
+    <view class="location-info">
+      <text class="location-address">{{address}}</text>
+      <text class="location-coords">坐标: {{latitude}}, {{longitude}}</text>
+    </view>
+    
+    <!-- 地图 -->
+    <map class="location-map" 
+         latitude="{{latitude}}" 
+         longitude="{{longitude}}" 
+         markers="{{markers}}"
+         scale="{{scale}}"
+         show-location>
+    </map>
+    
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="action-btn call-btn" bindtap="callEmergency">
+        <text class="btn-icon">📞</text>
+        <text>拨打120急救</text>
+      </button>
+      <button class="action-btn map-btn" bindtap="openLocation">
+        <text class="btn-icon">📍</text>
+        <text>在地图中查看</text>
+      </button>
+      <button class="action-btn" open-type="share">
+        <text class="btn-icon">🔄</text>
+        <text>转发求助</text>
+      </button>
+    </view>
+    
+    <!-- 提示信息 -->
+    <view class="tips">
+      <view class="tip-item">
+        <text class="tip-icon">💡</text>
+        <text>请尽快与求助者取得联系</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">💡</text>
+        <text>如遇紧急情况，请立即拨打120</text>
+      </view>
+    </view>
+  </block>
+</view>

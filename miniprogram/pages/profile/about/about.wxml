@@ -1,0 +1,55 @@
+<!-- about.wxml -->
+<view class="about-container">
+  <view class="header">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="app-name">老年健康伴侣</view>
+    <view class="app-desc">让老年人的生活更健康、更安心</view>
+    <view class="version">版本 {{version}}</view>
+  </view>
+  
+  <view class="content-container">
+    <view class="section">
+      <view class="section-header">
+        <view class="section-icon">📋</view>
+        <view class="section-title">应用功能</view>
+      </view>
+      <view class="feature-list">
+        <view class="feature-item" wx:for="{{features}}" wx:key="title">
+          <view class="feature-title">{{item.title}}</view>
+          <view class="feature-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 其他部分保持不变 -->
+    <view class="section">
+      <view class="section-header">
+        <view class="section-icon">👨‍💻</view>
+        <view class="section-title">开发团队</view>
+      </view>
+      <view class="card team-info">
+        <view class="team-intro">开发者为两个同济大学大二软件工程专业的学生，这是应付课程期末项目的程序，初次接触，请多包涵。</view>
+        <view class="developer-list">
+          <view class="developer-item" wx:for="{{developers}}" wx:key="name">
+            <view class="developer-name">{{item.name}}</view>
+            <view class="developer-role">{{item.role}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-header">
+        <view class="section-icon">🎯</view>
+        <view class="section-title">开发目的</view>
+      </view>
+      <view class="card purpose-content">
+        本小程序旨在帮助老年人更好地管理健康、增强安全感、促进社交联系，提高生活品质。通过简单易用的界面和功能设计，让科技为老年人的生活带来便利。
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <view class="copyright">老年健康伴侣</view>
+  </view>
+</view>

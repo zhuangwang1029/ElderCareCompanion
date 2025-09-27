@@ -1,0 +1,86 @@
+<!--pages/safety/emergency/emergency.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">紧急求助</view>
+    <text class="subtitle">紧急情况下，可快速联系医疗服务或家人</text>
+  </view>
+  
+  <view class="emergency-btn-container">
+    <button class="emergency-btn" bindtap="callEmergency">
+      <text class="emergency-icon">🚨</text>
+      <text>紧急求助</text>
+    </button>
+    <text class="emergency-desc">点击将获取位置并分享给您的紧急联系人</text>
+  </view>
+
+  <view class="section-title">
+    <text>紧急联系人</text>
+    <view class="add-btn" bindtap="showAddContact">
+      <text class="add-icon">+</text>
+      <text>添加</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>正在加载联系人...</text>
+  </view>
+  
+  <!-- 没有联系人 -->
+  <view class="no-contacts" wx:elif="{{contacts.length === 0}}">
+    <text class="no-contacts-icon">📒</text>
+    <text>暂无紧急联系人</text>
+    <text class="hint">请点击右上角"添加"按钮添加联系人</text>
+  </view>
+
+  <!-- 联系人列表 -->
+  <view class="contacts-list" wx:else>
+    <view class="contact-item" wx:for="{{contacts}}" wx:key="id">
+      <view class="contact-avatar" style="background-color: {{item.bgColor}}">
+        <text>{{item.nameInitial}}</text>
+      </view>
+      <view class="contact-info">
+        <view class="contact-primary">
+          <text class="contact-name">{{item.name}}</text>
+          <text class="contact-relation">{{item.relation}}</text>
+        </view>
+        <text class="contact-phone">{{item.phone}}</text>
+      </view>
+      <view class="contact-actions">
+        <view class="action-btn call" bindtap="callContact" data-phone="{{item.phone}}">
+          <text class="action-icon">📞</text>
+        </view>
+        <view class="action-btn edit" bindtap="editContact" data-id="{{item.id}}">
+          <text class="action-icon">✏️</text>
+        </view>
+        <view class="action-btn delete" bindtap="deleteContact" data-id="{{item.id}}">
+          <text class="action-icon">🗑️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-title">
+    <text>紧急位置历史</text>
+    <view class="view-btn" bindtap="viewLocationHistory">
+      <text class="view-icon">📍</text>
+      <text>查看</text>
+    </view>
+  </view>
+
+  <view class="tips">
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>请确保联系人电话号码正确无误</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>发起紧急求助后，点击右上角"···"分享给联系人</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>让您的联系人知晓他们是您的紧急联系人</text>
+    </view>
+  </view>
+</view>

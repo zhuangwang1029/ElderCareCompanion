@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="form-container">
+    <!-- 联系人信息预览 -->
+    <view class="contact-preview">
+      <view class="contact-avatar" style="background-color: {{contact.name ? utils.getRandomColor(contact.name) : '#cccccc'}}">
+        <text>{{contact.name ? contact.name.charAt(0) : '?'}}</text>
+      </view>
+      <view class="contact-title">{{contact.name || '新联系人'}}</view>
+    </view>
+
+    <!-- 联系人信息表单 -->
+    <view class="form-group">
+      <view class="form-label">姓名</view>
+      <view class="form-input">
+        <input type="text" placeholder="请输入联系人姓名" value="{{contact.name}}" bindinput="inputName" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">关系</view>
+      <view class="form-input picker">
+        <picker mode="selector" range="{{relationOptions}}" value="{{relationOptions.indexOf(selectedRelation)}}" bindchange="changeRelation">
+          <view class="picker-text">{{selectedRelation || '请选择与联系人关系'}}</view>
+          <view class="picker-arrow">▼</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">手机号码</view>
+      <view class="form-input">
+        <input type="number" placeholder="请输入联系人手机号码" value="{{contact.phone}}" bindinput="inputPhone" maxlength="11" />
+      </view>
+    </view>
+
+    <!-- 提示信息 -->
+    <view class="tips">
+      <text class="tip-icon">💡</text>
+      <text>添加联系人后您可以在主页直接拨打电话</text>
+    </view>
+
+    <!-- 按钮区域 -->
+    <view class="btn-group">
+      <button class="btn cancel" bindtap="cancelEdit">取消</button>
+      <button class="btn save" bindtap="saveContact">保存</button>
+    </view>
+  </view>
+</view>
+
+<wxs module="utils">
+  // 获取随机颜色的辅助函数
+  function getRandomColor(name) {
+    if (!name) return '#cccccc';
+    var colors = ['#FF5722', '#673AB7', '#3F51B5', '#2196F3', '#009688', '#4CAF50', '#FFC107', '#795548'];
+    var sum = 0;
+    for (var i = 0; i < name.length; i++) {
+      sum += name.charCodeAt(i);
+    }
+    var index = sum % colors.length;
+    return colors[index];
+  }
+
+  module.exports = {
+    getRandomColor: getRandomColor
+  };
+</wxs>

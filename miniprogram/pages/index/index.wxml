@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 欢迎卡片 -->
+  <view class="welcome-card">
+    <view class="title">欢迎使用老年健康伴侣</view>
+    <view class="greeting">{{greeting}}</view>
+  </view>
+  
+  <!-- X形布局快捷功能卡片 -->
+  <view class="function-card">
+    <view class="subtitle">快捷功能</view>
+    <view class="x-layout">
+      <!-- 左上角：服药提醒 -->
+      <view class="function-corner top-left" hover-class="item-hover" bindtap="goToMedicine">
+        <image class="function-icon" src="/images/medicine.png" mode="aspectFit"></image>
+        <view class="function-name">服药提醒</view>
+      </view>
+      
+      <!-- 右上角：紧急求助 -->
+      <view class="function-corner top-right" hover-class="item-hover" bindtap="goToEmergency">
+        <image class="function-icon" src="/images/emergency.png" mode="aspectFit"></image>
+        <view class="function-name">紧急求助</view>
+      </view>
+      
+      <!-- 中间：语音助手 -->
+      <view class="function-center" hover-class="center-hover" bindtap="goToAssistant">
+        <view class="center-circle">
+          <image class="voice-icon" src="/images/assistant_icon.png" mode="aspectFit"></image>
+          <view class="center-text">语音助手</view>
+        </view>
+      </view>
+      
+      <!-- 左下角：健康日记 -->
+      <view class="function-corner bottom-left" hover-class="item-hover" bindtap="goToDiary">
+        <image class="function-icon" src="/images/health.png" mode="aspectFit"></image>
+        <view class="function-name">健康日记</view>
+      </view>
+      
+      <!-- 右下角：通话 -->
+      <view class="function-corner bottom-right" hover-class="item-hover" bindtap="goToCall">
+        <image class="function-icon" src="/images/call.png" mode="aspectFit"></image>
+        <view class="function-name">通话</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 健康记录卡片 -->
+  <view class="record-card">
+    <view class="subtitle">健康记录</view>
+    <view class="record-options">
+      <view class="record-option" bindtap="goToDiary">
+        <view class="option-icon">📝</view>
+        <view class="option-name">今日记录</view>
+      </view>
+      <view class="record-option" bindtap="goToDiaryHistory">
+        <view class="option-icon">📅</view>
+        <view class="option-name">历史记录</view>
+      </view>
+      <view class="record-option" bindtap="goToTrends">
+        <view class="option-icon">📊</view>
+        <view class="option-name">健康趋势</view>
+      </view>
+    </view>
+  </view>
+</view>

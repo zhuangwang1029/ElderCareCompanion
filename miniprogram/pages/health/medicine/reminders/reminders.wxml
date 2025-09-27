@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="header">
+    <view class="title">所有提醒</view>
+  </view>
+  
+  <view class="reminder-list" wx:if="{{reminders.length > 0}}">
+    <view class="reminder-item" wx:for="{{reminders}}" wx:key="id">
+      <view class="reminder-medicine-name">{{item.medicineName}}</view>
+      <view class="reminder-details">
+        <view class="reminder-time">
+          <image src="/images/clock.png" mode="aspectFit"></image>
+          <text>{{item.timeDisplay}}</text>
+        </view>
+        <view class="reminder-dosage">
+          <image src="/images/pill.png" mode="aspectFit"></image>
+          <text>{{item.dosageValue}} {{item.dosageUnit}}</text>
+        </view>
+      </view>
+      <view class="reminder-instruction">{{item.instruction}}</view>
+      
+      <view class="reminder-actions">
+        <view class="action-btn" bindtap="editReminder" data-id="{{item.id}}">调整</view>
+        <view class="divider">|</view>
+        <view class="action-btn {{item.active ? 'active' : 'inactive'}}" 
+              bindtap="toggleReminderStatus" data-id="{{item.id}}">
+          {{item.active ? '已启用' : '已禁用'}}
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="no-reminders" wx:else>
+    <image src="/images/no_reminders.png" mode="aspectFit"></image>
+    <view class="no-reminders-text">暂无提醒</view>
+    <view class="no-reminders-tip">您可以在药物详情中设置提醒</view>
+  </view>
+</view>

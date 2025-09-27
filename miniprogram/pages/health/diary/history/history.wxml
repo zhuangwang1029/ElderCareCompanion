@@ -1,0 +1,96 @@
+<view class="container">
+  <view class="header">
+    <view class="title">健康日记记录</view>
+  </view>
+
+  <view class="calendar-section">
+    <view class="month-header">
+      <view class="arrow" bindtap="prevMonth">◀</view>
+      <view class="month-title">{{currentYear}}年{{currentMonth}}月</view>
+      <view class="arrow" bindtap="nextMonth">▶</view>
+    </view>
+    
+    <view class="weekdays">
+      <view class="weekday" wx:for="{{weekdays}}" wx:key="*this">{{item}}</view>
+    </view>
+    
+    <view class="days-grid">
+      <!-- 填充月初空白 -->
+      <view class="day-placeholder" wx:for="{{firstDayOfWeek}}" wx:key="*this"></view>
+      
+      <!-- 日期 -->
+      <view 
+        class="day {{item.isToday ? 'today' : ''}} {{item.hasRecord ? 'has-record' : ''}} {{selectedDate === item.fullDate ? 'selected' : ''}}" 
+        wx:for="{{days}}" 
+        wx:key="fullDate" 
+        bindtap="selectDay"
+        data-date="{{item.fullDate}}">
+        <view class="day-number">{{item.day}}</view>
+        <view class="day-indicator" wx:if="{{item.hasRecord}}">
+          <view class="feeling-indicator feeling-{{item.feeling}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="record-section" wx:if="{{selectedDiaryData}}">
+    <view class="record-header">
+      <view class="record-date">{{selectedDate}}</view>
+      <view class="delete-btn" bindtap="deleteDiary">删除</view>
+    </view>
+
+    <view class="feeling-section">
+      <view class="section-title">整体感受</view>
+      <view class="feeling-display">
+        <view class="feeling-text">
+          {{selectedDiaryData.feeling === 'great' ? '很好' : 
+            selectedDiaryData.feeling === 'good' ? '一般' : 
+            selectedDiaryData.feeling === 'fair' ? '不适' : '难受'}}
+        </view>
+      </view>
+    </view>
+    
+    <view class="metrics-section" wx:if="{{selectedDiaryData.bloodPressureHigh || selectedDiaryData.heartRate || selectedDiaryData.bloodGlucose}}">
+      <view class="section-title">健康指标</view>
+      <view class="metrics-grid">
+        <view class="metric-item" wx:if="{{selectedDiaryData.bloodPressureHigh}}">
+          <view class="metric-label">血压</view>
+          <view class="metric-value">{{selectedDiaryData.bloodPressureHigh}}/{{selectedDiaryData.bloodPressureLow}} mmHg</view>
+        </view>
+        <view class="metric-item" wx:if="{{selectedDiaryData.heartRate}}">
+          <view class="metric-label">心率</view>
+          <view class="metric-value">{{selectedDiaryData.heartRate}} 次/分</view>
+        </view>
+        <view class="metric-item" wx:if="{{selectedDiaryData.bloodGlucose}}">
+          <view class="metric-label">血糖</view>
+          <view class="metric-value">{{selectedDiaryData.bloodGlucose}} mmol/L</view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="symptoms-section" wx:if="{{hasSymptoms}}">
+      <view class="section-title">症状记录</view>
+      <view class="symptoms-list">
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.headache}}">头痛</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.dizziness}}">头晕</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.chest_pain}}">胸痛</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.nausea}}">恶心</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.fatigue}}">疲劳</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.insomnia}}">失眠</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.cough}}">咳嗽</view>
+        <view class="symptom-tag" wx:if="{{selectedDiaryData.symptoms.fever}}">发热</view>
+      </view>
+    </view>
+    
+    <view class="note-section" wx:if="{{selectedDiaryData.note}}">
+      <view class="section-title">备注</view>
+      <view class="note-content">{{selectedDiaryData.note}}</view>
+    </view>
+  </view>
+  
+  <view class="no-record" wx:if="{{!selectedDiaryData}}">
+    <image class="empty-icon" src="/images/empty_record.png"></image>
+    <view class="empty-text">{{selectedDate}} 没有健康记录</view>
+    <button class="add-record-btn" bindtap="addNewRecord">添加记录</button>
+  </view>
+</view>

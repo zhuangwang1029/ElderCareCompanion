@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default_avatar.png'}}"></image>
+      <view class="name-box">
+        <view class="user-name">{{userInfo.nickName || '老人家'}}</view>
+        <view class="tip">{{userAge}}岁</view>
+      </view>
+      <view class="edit-btn" bindtap="editUserInfo">编辑</view>
+      </view>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-group">
+      <view class="menu-item" bindtap="goToHealthData">
+        <image class="menu-icon" src="/images/profile/health_data.png"></image>
+        <view class="menu-text">健康数据</view>
+        <image class="arrow" src="/images/profile/arrow.png"></image>
+      </view>
+      
+      <!-- 服药提醒设置选项已删除 -->
+      
+      <view class="menu-item" bindtap="goToEmergencyContacts">
+        <image class="menu-icon" src="/images/profile/contacts.png"></image>
+        <view class="menu-text">紧急联系人</view>
+        <image class="arrow" src="/images/profile/arrow.png"></image>
+      </view>
+    </view>
+    
+    <view class="menu-group">
+      <view class="menu-item" bindtap="goToSettings">
+        <image class="menu-icon" src="/images/profile/settings.png"></image>
+        <view class="menu-text">设置</view>
+        <image class="arrow" src="/images/profile/arrow.png"></image>
+      </view>
+      
+      <view class="menu-item" bindtap="goToAbout">
+        <image class="menu-icon" src="/images/profile/about.png"></image>
+        <view class="menu-text">关于我们</view>
+        <image class="arrow" src="/images/profile/arrow.png"></image>
+      </view>
+    </view>
+  </view>
+  
+  <view class="version-info">版本 1.0.0</view>
+</view>

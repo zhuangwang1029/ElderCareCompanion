@@ -1,0 +1,279 @@
+/* pages/social/call/call.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-action {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #2196F3;
+}
+
+.action-icon {
+  margin-right: 8rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  color: #999;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #2196F3;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  color: #999;
+}
+
+.no-data-icon {
+  font-size: 80rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.hint {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #2196F3;
+}
+
+/* 联系人列表样式 */
+.contact-list {
+  white-space: nowrap;
+  margin: 0 -30rpx;
+  padding: 0 30rpx;
+}
+
+.contact-scroll {
+  display: inline-flex;
+  padding: 20rpx 0;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40rpx;
+  position: relative;
+  width: 120rpx;
+}
+
+.contact-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.contact-avatar text {
+  font-size: 48rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.contact-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 6rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-relation {
+  font-size: 22rpx;
+  color: #888;
+  background-color: #f0f0f0;
+  padding: 2rpx 10rpx;
+  border-radius: 6rpx;
+}
+
+.contact-actions {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  display: flex;
+}
+
+.action-btn {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rpx;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 通话记录样式 */
+.history-list {
+  margin-bottom: 40rpx;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.history-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.history-avatar text {
+  font-size: 36rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.history-info {
+  flex: 1;
+}
+
+.history-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.history-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.history-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-type {
+  display: flex;
+  align-items: center;
+}
+
+.history-type-icon {
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+
+.history-type text:last-child {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.history-duration {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tips {
+  margin-top: 40rpx;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.tip-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.tip-item text:last-child {
+  font-size: 26rpx;
+  color: #888;
+}

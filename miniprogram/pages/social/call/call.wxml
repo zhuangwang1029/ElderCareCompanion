@@ -1,0 +1,106 @@
+<!--pages/social/call/call.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">通话</view>
+    <text class="subtitle">与家人和朋友保持联系</text>
+  </view>
+  
+  <!-- 联系人部分 -->
+  <view class="section-header">
+    <view class="section-title">联系人</view>
+    <view class="section-action" bindtap="showAddContact">
+      <text class="action-icon">+</text>
+      <text>添加</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading.contacts}}">
+    <view class="loading-spinner"></view>
+    <text>加载联系人中...</text>
+  </view>
+  
+  <!-- 没有联系人 -->
+  <view class="no-data" wx:elif="{{contacts.length === 0}}">
+    <text class="no-data-icon">👥</text>
+    <text>暂无联系人</text>
+    <text class="hint">点击右上角"添加"按钮添加联系人</text>
+  </view>
+
+  <!-- 联系人列表 -->
+  <scroll-view class="contact-list" scroll-x="true" wx:else>
+    <view class="contact-scroll">
+      <view class="contact-item" wx:for="{{contacts}}" wx:key="id">
+        <view class="contact-avatar" style="background-color: {{item.bgColor}}" bindtap="startCall" data-id="{{item.id}}">
+          <text>{{item.nameInitial}}</text>
+        </view>
+        <view class="contact-info">
+          <text class="contact-name">{{item.name}}</text>
+          <text class="contact-relation">{{item.relation}}</text>
+        </view>
+        <view class="contact-actions">
+          <view class="action-btn edit" catchtap="editContact" data-id="{{item.id}}">
+            <text class="action-icon">✏️</text>
+          </view>
+          <view class="action-btn delete" catchtap="deleteContact" data-id="{{item.id}}">
+            <text class="action-icon">🗑️</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 通话记录部分 -->
+  <view class="section-header">
+    <view class="section-title">通话记录</view>
+    <view class="section-action" bindtap="clearCallHistory" wx:if="{{callHistory.length > 0}}">
+      <text>清空</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading.history}}">
+    <view class="loading-spinner"></view>
+    <text>加载通话记录中...</text>
+  </view>
+  
+  <!-- 没有通话记录 -->
+  <view class="no-data" wx:elif="{{callHistory.length === 0}}">
+    <text class="no-data-icon">📞</text>
+    <text>暂无通话记录</text>
+    <text class="hint">点击联系人头像即可发起通话</text>
+  </view>
+
+  <!-- 通话记录列表 -->
+  <view class="history-list" wx:else>
+    <view class="history-item" wx:for="{{callHistory}}" wx:key="id" bindtap="redial" data-id="{{item.id}}">
+      <view class="history-avatar" style="background-color: {{item.bgColor}}">
+        <text>{{item.nameInitial || item.name.charAt(0)}}</text>
+      </view>
+      <view class="history-info">
+        <view class="history-name-row">
+          <text class="history-name">{{item.name}}</text>
+          <text class="history-time">{{item.time}}</text>
+        </view>
+        <view class="history-detail-row">
+          <view class="history-type">
+            <text class="history-type-icon">📞</text>
+            <text>{{item.phone || '未知号码'}}</text>
+          </view>
+          <text class="history-duration">{{item.duration}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips">
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>点击联系人头像可以快速拨打电话</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-icon">💡</text>
+      <text>点击通话记录可以重新拨打电话</text>
+    </view>
+  </view>
+</view>

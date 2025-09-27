@@ -1,0 +1,44 @@
+<!--pages/health/medicine/medicine.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">服药提醒</view>
+    <view class="subtitle">今日待服用药物</view>
+  </view>
+
+  <view class="no-medicine" wx:if="{{!medications || medications.length === 0}}">
+    <image class="empty-icon" src="/images/empty.png"></image>
+    <view class="empty-text">暂无服药提醒</view>
+    <button class="add-btn" bindtap="showAddMedicine">添加服药提醒</button>
+  </view>
+
+  <view class="medicine-list" wx:else>
+    <view class="medicine-item" wx:for="{{medications}}" wx:key="id">
+      <view class="medicine-info">
+        <view class="medicine-name">{{item.name}}</view>
+        <view class="medicine-time">
+          <!-- 显示预设时间段 -->
+          <block wx:if="{{item.timeSelected.morning}}">早餐</block>
+          <block wx:if="{{item.timeSelected.noon}}">午餐</block>
+          <block wx:if="{{item.timeSelected.evening}}">晚餐</block>
+          <block wx:if="{{item.timeSelected.bedtime}}">睡前</block>
+          <!-- 显示自定义时间 -->
+          <block wx:if="{{item.customTimes && item.customTimes.length > 0}}">
+            {{item.customTimes[0]}}
+          </block>
+          <!-- 显示状态 -->
+          <text> {{item.status ? '已服用' : '待服用'}}</text>
+        </view>
+        <view class="medicine-desc">{{item.dosageValue}} {{item.dosageUnit}} · {{item.instruction}}</view>
+      </view>
+      <view class="medicine-actions">
+        <button class="take-btn {{item.status ? 'took' : ''}}" bindtap="toggleMedicineStatus" data-id="{{item.id}}">
+          {{item.status ? '已服用' : '标记服用'}}
+        </button>
+        <button class="edit-btn" bindtap="editMedicine" data-id="{{item.id}}">编辑</button>
+        <button class="delete-btn" bindtap="deleteMedicine" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+  
+  <view class="float-btn" bindtap="showAddMedicine">+</view>
+</view>

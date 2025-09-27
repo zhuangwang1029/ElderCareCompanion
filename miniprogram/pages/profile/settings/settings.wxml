@@ -1,0 +1,38 @@
+<base-page>
+  <view class="container">
+    <view class="header">
+      <view class="title">设置</view>
+    </view>
+    
+    <view class="settings-list">
+      <view class="settings-group">
+        <view class="settings-title">通知设置</view>
+        
+        <view class="settings-item">
+          <view class="settings-label">通知提醒</view>
+          <view class="switch-wrapper">
+            <switch checked="{{settings.notificationEnabled}}" bindchange="toggleNotification" color="#4CAF50" />
+          </view>
+        </view>
+        
+        <view class="settings-item">
+          <view class="settings-label">声音提示</view>
+          <view class="switch-wrapper">
+            <switch checked="{{settings.soundEnabled}}" bindchange="toggleSound" color="#4CAF50" />
+          </view>
+        </view>
+      </view>
+      
+      <view class="settings-group">
+        <view class="settings-title">其他设置</view>
+        
+        <view class="settings-item" bindtap="clearCache">
+          <view class="settings-label">清除缓存</view>
+          <view class="arrow">
+            <image src="/images/profile/arrow.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</base-page>

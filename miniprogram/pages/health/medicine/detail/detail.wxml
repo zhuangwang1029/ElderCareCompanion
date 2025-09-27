@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="medicine-card">
+    <view class="medicine-name">{{medicine.name}}</view>
+    
+    <view class="info-section">
+      <view class="info-item">
+        <view class="info-label">服用剂量</view>
+        <view class="info-value">{{medicine.dosageValue}} {{medicine.dosageUnit}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">服用频率</view>
+        <view class="info-value">{{medicine.frequency}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">服用说明</view>
+        <view class="info-value">{{medicine.instruction}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">服用时间</view>
+        <view class="info-value">
+          <view class="time-tags">
+            <view class="time-tag" wx:if="{{medicine.timeSelected.morning}}">早餐</view>
+            <view class="time-tag" wx:if="{{medicine.timeSelected.noon}}">午餐</view>
+            <view class="time-tag" wx:if="{{medicine.timeSelected.evening}}">晚餐</view>
+            <view class="time-tag" wx:if="{{medicine.timeSelected.bedtime}}">睡前</view>
+          </view>
+          
+          <view wx:if="{{medicine.customTimes && medicine.customTimes.length > 0}}">
+            <view wx:for="{{medicine.customTimes}}" wx:key="*this" class="custom-time">{{item}}</view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="info-item" wx:if="{{medicine.description}}">
+        <view class="info-label">药品描述</view>
+        <view class="info-value description">{{medicine.description}}</view>
+      </view>
+      
+      <view class="info-item" wx:if="{{medicine.stock}}">
+        <view class="info-label">剩余数量</view>
+        <view class="info-value stock {{medicine.stock <= medicine.stockThreshold ? 'low-stock' : ''}}">
+          {{medicine.stock}} {{medicine.dosageUnit}}
+          <text class="stock-warning" wx:if="{{medicine.stock <= medicine.stockThreshold}}">
+            (库存不足，请及时补充)
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="action-buttons">
+    <button class="btn btn-take" bindtap="takeMedicine">{{medicine.status ? '取消服用' : '标记服用'}}</button>
+    <button class="btn btn-edit" bindtap="editMedicine">编辑药物</button>
+    <button class="btn btn-delete" bindtap="deleteMedicine">删除药物</button>
+  </view>
+</view>

@@ -1,0 +1,213 @@
+<view class="container">
+  <view class="header">
+    <view class="title">健康趋势</view>
+  </view>
+
+  <view class="select-section">
+    <view class="subtitle">选择数据类型</view>
+    <view class="type-tabs">
+      <view class="tab {{dataType === 'bloodPressure' ? 'active' : ''}}" bindtap="switchType" data-type="bloodPressure">血压</view>
+      <view class="tab {{dataType === 'heartRate' ? 'active' : ''}}" bindtap="switchType" data-type="heartRate">心率</view>
+      <view class="tab {{dataType === 'bloodGlucose' ? 'active' : ''}}" bindtap="switchType" data-type="bloodGlucose">血糖</view>
+    </view>
+  </view>
+
+  <view class="date-range">
+    <view class="subtitle">查看范围</view>
+    <view class="range-tabs">
+      <view class="tab {{dateRange === '7' ? 'active' : ''}}" bindtap="switchRange" data-range="7">一周</view>
+      <view class="tab {{dateRange === '30' ? 'active' : ''}}" bindtap="switchRange" data-range="30">一个月</view>
+      <view class="tab {{dateRange === '90' ? 'active' : ''}}" bindtap="switchRange" data-range="90">三个月</view>
+    </view>
+  </view>
+
+  <!-- 显示加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-indicator"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <view class="chart-container" wx:else>
+    <!-- 如果没有数据显示提示 -->
+    <view class="no-data" wx:if="{{!hasData}}">
+      <image src="/images/no_data.png" mode="aspectFit"></image>
+      <view>暂无{{dataTypeLabel}}数据</view>
+      <view class="add-data-tip">通过健康日记添加记录</view>
+    </view>
+    
+    <!-- 有数据则显示图表 -->
+    <block wx:else>
+      <!-- 添加健康洞察卡片 -->
+      <view class="insights-card" wx:if="{{healthInsights}}">
+        <view class="insights-title">健康洞察</view>
+        <view class="insights-content">
+          <view class="insight-item" wx:if="{{healthInsights.trend}}">
+            <view class="insight-icon">📊</view>
+            <view class="insight-text">{{healthInsights.trend}}</view>
+          </view>
+          <view class="insight-item" wx:if="{{healthInsights.average}}">
+            <view class="insight-icon">📏</view>
+            <view class="insight-text">{{healthInsights.average}}</view>
+          </view>
+          <view class="insight-item" wx:if="{{healthInsights.abnormal}}">
+            <view class="insight-icon">⚠️</view>
+            <view class="insight-text">{{healthInsights.abnormal}}</view>
+          </view>
+          <view class="insight-item" wx:if="{{healthInsights.advice}}">
+            <view class="insight-icon">💡</view>
+            <view class="insight-text">{{healthInsights.advice}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="chart-title">
+        <text>{{dataTypeLabel}}趋势图</text>
+        <text class="date-range-text">{{startDate}} ~ {{endDate}}</text>
+      </view>
+
+      <!-- 简易图表区域 -->
+      <scroll-view scroll-x="true" class="chart-scroll">
+        <view class="simple-chart" style="width: {{chartWidth}}px;">
+          <!-- 图表Y轴 -->
+          <view class="chart-y-axis">
+            <view wx:for="{{yAxisLabels}}" wx:key="*this" class="y-label">
+              {{item}}
+            </view>
+          </view>
+          
+          <!-- 图表主体 -->
+          <view class="chart-body">
+            <!-- 水平网格线 -->
+            <view wx:for="{{yAxisLabels}}" wx:key="*this" class="h-grid-line" style="bottom: {{index * (chartHeight - 60) / (yAxisLabels.length - 1) + 30}}px;"></view>
+            
+            <!-- 血压特殊处理：双线 -->
+            <view class="data-line systolic" wx:if="{{dataType === 'bloodPressure'}}">
+              <!-- 连接线 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" wx:if="{{index < chartData.length - 1}}" class="point-connection" style="left: {{index * pointSpacing}}px; width: {{pointSpacing}}px; top: {{(chartHeight - 60) - (chartData[index].high - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px; transform: translateY(-50%);"></view>
+              
+              <!-- 数据点 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" class="data-point {{item.highAbnormal ? 'abnormal' : ''}}" style="left: {{index * pointSpacing}}px; bottom: {{(item.high - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px;" bindtap="showDetail" data-index="{{index}}">
+                <view class="point-dot"></view>
+                <view class="data-label" wx:if="{{selectedIndex === index}}">{{item.high}}</view>
+                <view class="abnormal-marker" wx:if="{{item.highAbnormal}}">!</view>
+              </view>
+            </view>
+            
+            <!-- 舒张压线 -->
+            <view class="data-line diastolic" wx:if="{{dataType === 'bloodPressure'}}">
+              <!-- 连接线 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" wx:if="{{index < chartData.length - 1}}" class="point-connection" style="left: {{index * pointSpacing}}px; width: {{pointSpacing}}px; top: {{(chartHeight - 60) - (chartData[index].low - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px; transform: translateY(-50%);"></view>
+              
+              <!-- 数据点 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" class="data-point {{item.lowAbnormal ? 'abnormal' : ''}}" style="left: {{index * pointSpacing}}px; bottom: {{(item.low - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px;" bindtap="showDetail" data-index="{{index}}">
+                <view class="point-dot"></view>
+                <view class="data-label" wx:if="{{selectedIndex === index}}">{{item.low}}</view>
+                <view class="abnormal-marker" wx:if="{{item.lowAbnormal}}">!</view>
+              </view>
+            </view>
+            
+            <!-- 心率和血糖：单线 -->
+            <view class="data-line {{dataType === 'heartRate' ? 'heart-rate' : 'blood-glucose'}}" wx:if="{{dataType !== 'bloodPressure'}}">
+              <!-- 连接线 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" wx:if="{{index < chartData.length - 1}}" class="point-connection" style="left: {{index * pointSpacing}}px; width: {{pointSpacing}}px; top: {{(chartHeight - 60) - (chartData[index].value - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px; transform: translateY(-50%);"></view>
+              
+              <!-- 数据点 - 修复为单行样式 -->
+              <view wx:for="{{chartData}}" wx:key="date" class="data-point {{item.abnormal ? 'abnormal' : ''}}" style="left: {{index * pointSpacing}}px; bottom: {{(item.value - minValue) / (maxValue - minValue) * (chartHeight - 60) + 30}}px;" bindtap="showDetail" data-index="{{index}}">
+                <view class="point-dot"></view>
+                <view class="data-label" wx:if="{{selectedIndex === index}}">{{item.value}}</view>
+                <view class="abnormal-marker" wx:if="{{item.abnormal}}">!</view>
+              </view>
+            </view>
+            
+            <!-- X轴日期标签 -->
+            <view class="x-axis">
+              <view wx:for="{{chartData}}" wx:key="date" class="x-label" style="left: {{index * pointSpacing}}px;">
+                {{item.shortDate}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 数据详情卡片 -->
+      <view class="data-detail" wx:if="{{selectedIndex !== null}}">
+        <view class="detail-date">{{chartData[selectedIndex].date}}</view>
+        <view class="detail-data">
+          <block wx:if="{{dataType === 'bloodPressure'}}">
+            <view class="detail-item {{chartData[selectedIndex].highAbnormal ? 'abnormal-item' : ''}}">
+              <text class="item-label">收缩压:</text>
+              <text class="item-value">{{chartData[selectedIndex].high}} mmHg</text>
+              <text class="abnormal-text" wx:if="{{chartData[selectedIndex].highAbnormal}}">
+                {{chartData[selectedIndex].high > 140 ? '偏高' : '偏低'}}
+              </text>
+            </view>
+            <view class="detail-item {{chartData[selectedIndex].lowAbnormal ? 'abnormal-item' : ''}}">
+              <text class="item-label">舒张压:</text>
+              <text class="item-value">{{chartData[selectedIndex].low}} mmHg</text>
+              <text class="abnormal-text" wx:if="{{chartData[selectedIndex].lowAbnormal}}">
+                {{chartData[selectedIndex].low > 90 ? '偏高' : '偏低'}}
+              </text>
+            </view>
+          </block>
+          <block wx:elif="{{dataType === 'heartRate'}}">
+            <view class="detail-item {{chartData[selectedIndex].abnormal ? 'abnormal-item' : ''}}">
+              <text class="item-label">心率:</text>
+              <text class="item-value">{{chartData[selectedIndex].value}} 次/分</text>
+              <text class="abnormal-text" wx:if="{{chartData[selectedIndex].abnormal}}">
+                {{chartData[selectedIndex].value > 100 ? '偏快' : '偏慢'}}
+              </text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="detail-item {{chartData[selectedIndex].abnormal ? 'abnormal-item' : ''}}">
+              <text class="item-label">血糖:</text>
+              <text class="item-value">{{chartData[selectedIndex].value}} mmol/L</text>
+              <text class="abnormal-text" wx:if="{{chartData[selectedIndex].abnormal}}">
+                {{chartData[selectedIndex].value > 6.1 ? '偏高' : '偏低'}}
+              </text>
+            </view>
+          </block>
+          <view class="detail-item" wx:if="{{chartData[selectedIndex].note}}">
+            <text class="item-label">备注:</text>
+            <text class="item-value">{{chartData[selectedIndex].note}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 数据范围提示 -->
+      <view class="range-tip">
+        <block wx:if="{{dataType === 'bloodPressure'}}">
+          <view>正常血压范围：90-139/60-89 mmHg</view>
+          <view class="legend-container">
+            <view class="legend-item">
+              <view class="legend-color systolic"></view>
+              <view class="legend-text">收缩压</view>
+            </view>
+            <view class="legend-item">
+              <view class="legend-color diastolic"></view>
+              <view class="legend-text">舒张压</view>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{dataType === 'heartRate'}}">
+          <view>正常心率范围：60-100 次/分</view>
+        </block>
+        <block wx:else>
+          <view>正常空腹血糖范围：3.9-6.1 mmol/L</view>
+        </block>
+      </view>
+
+      <view class="insights-container" wx:if="{{healthInsights && hasData}}">
+        <view class="insights-title">健康洞察</view>
+        <view class="insights-trend">{{healthInsights.trend}}</view>
+        <view class="insights-advice {{healthInsights.abnormal ? 'abnormal' : 'normal'}}">
+          {{healthInsights.advice}}
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="action-buttons">
+    <button class="btn full-width" bindtap="addNewRecord">添加新记录</button>
+  </view>
+</view>

@@ -1,0 +1,357 @@
+page {
+  background-color: #f8f8f8;
+  height: 100%;
+}
+
+.assistant-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #4CAF50;
+  color: #ffffff;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+.chat-container {
+  flex: 1;
+  padding: 20rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.chat-list {
+  height: 100%;
+}
+
+.chat-item {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.user-msg {
+  flex-direction: row-reverse;
+}
+
+.assistant-msg {
+  flex-direction: row;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 10rpx;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.message {
+  max-width: 70%;
+  padding: 20rpx;
+  border-radius: 16rpx;
+  word-break: break-all;
+  font-size: 28rpx;
+}
+
+.user-msg .message {
+  background-color: #4CAF50;
+  color: white;
+  border-top-right-radius: 0;
+}
+
+.assistant-msg .message {
+  background-color: white;
+  color: #333;
+  border-top-left-radius: 0;
+}
+
+.tips {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin: 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.tip-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20rpx;
+}
+
+.tip-content {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  line-height: 1.6;
+}
+
+.footer {
+  padding: 20rpx;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+
+.voice-button {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: white;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4CAF50;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  font-size: 30rpx;
+  transition: all 0.2s;
+}
+
+.voice-button.recording {
+  background-color: #4CAF50;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 添加到assistant.wxss */
+.simulate-input {
+  background: white;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.simulate-header {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.quick-questions {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-item {
+  background: #f8f8f8;
+  padding: 16rpx 20rpx;
+  border-radius: 30rpx;
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+  color: #4CAF50;
+}
+
+.question-item:active {
+  background: #e8e8e8;
+}
+
+.custom-input {
+  margin-top: 20rpx;
+}
+
+.input-header {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.input-box {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  align-items: center;
+}
+
+.input-box input {
+  flex: 1;
+  font-size: 28rpx;
+  height: 60rpx;
+}
+
+.submit-btn {
+  background: #4CAF50;
+  color: white;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+  padding: 0 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0;
+}
+
+.footer {
+  padding: 20rpx;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15rpx;
+}
+
+.text-input {
+  flex: 1;
+  background-color: white;
+  border-radius: 40rpx;
+  height: 80rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.send-btn {
+  width: 120rpx;
+  height: 80rpx;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  padding: 0;
+  margin: 0;
+}
+
+.voice-button {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: white;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4CAF50;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  font-size: 30rpx;
+  transition: all 0.2s;
+}
+
+.voice-button.recording {
+  background-color: #4CAF50;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 帮助按钮样式 */
+.help-button {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #4CAF50;
+  text-decoration: underline;
+  padding: 10rpx;
+}
+
+/* 优化帮助面板样式 */
+.help-panel {
+  position: absolute;
+  bottom: 180rpx;
+  left: 30rpx;
+  right: 30rpx;
+  background-color: white;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+  padding: 30rpx;
+  z-index: 100;
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+.help-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.help-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.close-btn {
+  font-size: 44rpx;
+  color: #999;
+  padding: 10rpx;
+  line-height: 1;
+}
+
+.help-content {
+  padding: 10rpx 0;
+}
+
+.help-item {
+  margin-bottom: 40rpx;
+}
+
+.help-item-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.help-item-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+  line-height: 1.6;
+}
+
+.help-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  color: #666;
+  padding-left: 20rpx;
+  line-height: 2;
+}
+
+.help-list text {
+  margin-bottom: 8rpx;
+}
+
+/* 帮助按钮 */
+.help-button {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #4CAF50;
+  background-color: #f0f7f0;
+  border-radius: 30rpx;
+  padding: 10rpx 30rpx;
+  display: inline-block;
+}

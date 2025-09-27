@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="form-container">
+    <!-- 联系人信息表单 -->
+    <view class="form-group">
+      <view class="form-label">姓名</view>
+      <view class="form-input">
+        <input type="text" placeholder="请输入联系人姓名" value="{{contact.name}}" bindinput="inputName" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">关系</view>
+      <view class="form-input picker">
+        <picker mode="selector" range="{{relationOptions}}" value="{{relationOptions.indexOf(selectedRelation)}}" bindchange="changeRelation">
+          <view class="picker-text">{{selectedRelation || '请选择与联系人关系'}}</view>
+          <view class="picker-arrow">▼</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">手机号</view>
+      <view class="form-input">
+        <input type="number" placeholder="请输入手机号码" value="{{contact.phone}}" bindinput="inputPhone" maxlength="11" />
+      </view>
+    </view>
+
+    <!-- 按钮区域 -->
+    <view class="btn-group">
+      <button class="btn cancel" bindtap="cancelEdit">取消</button>
+      <button class="btn save" bindtap="saveContact">保存</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,93 @@
+<!-- assistant.wxml -->
+<view class="assistant-container">
+  <view class="header">
+    <view class="title">智能语音助手</view>
+    <view class="subtitle">您可以通过语音或文字与我交流</view>
+  </view>
+
+  <!-- 聊天容器 -->
+  <view class="chat-container" style="{{showHelp ? 'display:none' : ''}}">
+    <scroll-view scroll-y class="chat-list" scroll-into-view="{{scrollToView}}">
+      <block wx:for="{{chatList}}" wx:key="index">
+        <view id="msg-{{index}}" class="chat-item {{item.type === 'user' ? 'user-msg' : 'assistant-msg'}}">
+          <view class="avatar">
+            <image src="{{item.type === 'user' ? '/images/user_avatar.png' : '/images/assistant_avatar.png'}}"></image>
+          </view>
+          <view class="message">
+            <text>{{item.content}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  
+  <!-- 助手使用说明 - 使用条件显示替代绝对定位 -->
+  <view class="help-container" wx:if="{{showHelp}}">
+    <view class="help-panel">
+      <view class="help-header">
+        <text class="help-title">语音助手使用指南</text>
+        <view class="close-btn" bindtap="toggleHelp">×</view>
+      </view>
+      <view class="help-content">
+        <!-- 帮助内容不变 -->
+        <view class="help-item">
+          <view class="help-item-title">🎙️ 语音交流</view>
+          <view class="help-item-desc">按住底部"按住说话"按钮开始录音，松开按钮结束录音，助手会识别您的语音并回复</view>
+        </view>
+
+        <view class="help-item">
+          <view class="help-item-title">💬 文字交流</view>
+          <view class="help-item-desc">在输入框中输入文字，点击"发送"按钮或按回车键发送消息</view>
+        </view>
+
+        <view class="help-item">
+          <view class="help-item-title">🤖 AI大模型功能</view>
+          <view class="help-item-desc">本助手接入了DeepSeek R1大模型，您可以：</view>
+          <view class="help-list">
+            <text>• 日常聊天：随时找助手聊天解闷、谈心情</text>
+            <text>• 咨询健康：询问常见健康问题、养生保健知识</text>
+            <text>• 查询信息：了解天气、新闻、生活小常识</text>
+            <text>• 讲笑话、故事：让助手讲个笑话或故事放松心情</text>
+            <text>• 生活建议：获取饮食、运动等日常生活建议</text>
+          </view>
+        </view>
+
+        <view class="help-item">
+          <view class="help-item-title">📱 常用功能指令</view>
+          <view class="help-item-desc">您可以通过以下语音指令快速使用各项功能：</view>
+          <view class="help-list">
+            <text>• "提醒我吃药/添加药物提醒" - 创建服药提醒</text>
+            <text>• "记录血压/添加健康记录" - 添加健康日记</text>
+            <text>• "打电话给xxx/我想通话" - 使用通话功能</text>
+            <text>• "紧急情况/我需要帮助" - 发送紧急求助</text>
+          </view>
+        </view>
+
+        <view class="help-item">
+          <view class="help-item-title">💡 使用小贴士</view>
+          <view class="help-item-desc">
+            • 保持安静环境可提高语音识别准确度<br/>
+            • 说话语速适中，发音清晰<br/>
+            • 如遇识别错误，可改用文字输入
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="input-container">
+      <input class="text-input" placeholder="请输入内容..." value="{{inputText}}" bindinput="onInputChange" confirm-type="send" bindconfirm="sendTextMessage" />
+      <button class="send-btn" bindtap="sendTextMessage">发送</button>
+    </view>
+    <view class="voice-button {{recording ? 'recording' : ''}}" 
+          bindtouchstart="startRecord" 
+          bindtouchend="endRecord">
+      <text>{{recording ? '松开结束' : '按住说话'}}</text>
+    </view>
+    <!-- 帮助按钮 -->
+    <view class="help-button" bindtap="toggleHelp">
+      <text>{{showHelp ? '返回对话' : '使用帮助'}}</text>
+    </view>
+  </view>
+</view>

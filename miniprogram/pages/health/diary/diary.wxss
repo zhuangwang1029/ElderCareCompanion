@@ -1,0 +1,162 @@
+/* pages/health/diary/diary.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  color: #666666;
+}
+
+.diary-section {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #333333;
+}
+
+.feeling-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+}
+
+.feeling {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  border-radius: 16rpx;
+  width: 130rpx;
+}
+
+.feeling.active {
+  background-color: #E8F5E9;
+  border: 2rpx solid #4CAF50;
+}
+
+.feeling image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.feeling text {
+  font-size: 28rpx;
+}
+
+.health-metrics {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-item {
+  margin-bottom: 30rpx;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.metric-header image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.metric-header text {
+  font-size: 30rpx;
+  color: #444444;
+}
+
+input {
+  background-color: #F5F5F5;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+
+.metric-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.metric-input-group input {
+  flex: 1;
+}
+
+.metric-input-group text {
+  margin: 0 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.symptoms-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.symptom-tag {
+  margin: 10rpx;
+  padding: 16rpx 30rpx;
+  background-color: #F5F5F5;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.symptom-tag.active {
+  background-color: #E8F5E9;
+  color: #4CAF50;
+  border: 2rpx solid #4CAF50;
+}
+
+textarea {
+  width: 100%;
+  background-color: #F5F5F5;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  box-sizing: border-box;
+  height: 200rpx;
+}
+
+.word-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 10rpx;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+  margin: 30rpx 0 60rpx;
+}

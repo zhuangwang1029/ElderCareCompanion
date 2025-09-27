@@ -1,0 +1,22 @@
+.base-page {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-size: var(--app-font-size);
+}
+
+.page-container {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  color: #333333;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.dark-mode .card {
+  background-color: #222222;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+}

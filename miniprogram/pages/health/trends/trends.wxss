@@ -1,0 +1,508 @@
+.container {
+  padding: 30rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 20rpx;
+}
+
+.select-section, .date-range {
+  margin-bottom: 30rpx;
+}
+
+.type-tabs, .range-tabs {
+  display: flex;
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+  z-index: 1;
+}
+
+.tab.active {
+  color: #4CAF50;
+  font-weight: bold;
+  background-color: #E8F5E9;
+}
+
+.chart-container {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 0;
+  color: #999;
+}
+
+.no-data image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.add-data-tip {
+  font-size: 26rpx;
+  color: #4CAF50;
+  margin-top: 10rpx;
+}
+
+.chart-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.date-range-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.chart-scroll {
+  width: 100%;
+  height: 500rpx;
+  position: relative;
+}
+
+.simple-chart {
+  height: 460rpx;
+  position: relative;
+  display: flex;
+  padding-bottom: 40rpx;
+}
+
+.chart-y-axis {
+  width: 60rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.y-label {
+  font-size: 22rpx;
+  color: #333;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.chart-body {
+  flex: 1;
+  position: relative;
+  height: 100%;
+}
+
+.h-grid-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background-color: #f0f0f0;
+}
+
+.data-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 2;
+}
+
+/* 添加连接线样式 */
+.data-line .point-connection {
+  position: absolute;
+  height: 2rpx;
+  z-index: 1;
+}
+
+.systolic .point-connection {
+  background-color: #F44336;
+}
+
+.diastolic .point-connection {
+  background-color: #2196F3;
+}
+
+.heart-rate .point-connection {
+  background-color: #FF9800;
+}
+
+.blood-glucose .point-connection {
+  background-color: #9C27B0;
+}
+
+.data-point {
+  position: absolute;
+  transform: translate(-50%, 50%);
+  z-index: 3;
+  transition: transform 0.2s;
+}
+
+.data-point.selected {
+  transform: translate(-50%, 50%) scale(1.3);
+}
+
+.data-point.abnormal {
+  stroke: #c62828;
+  stroke-width: 2;
+}
+
+.point-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  position: relative;
+  z-index: 3;
+}
+
+.systolic .point-dot {
+  background-color: #F44336;
+}
+
+.diastolic .point-dot {
+  background-color: #2196F3;
+}
+
+.heart-rate .point-dot {
+  background-color: #FF9800;
+}
+
+.blood-glucose .point-dot {
+  background-color: #9C27B0;
+}
+
+/* 异常值标记样式 */
+.abnormal .point-dot {
+  transform: scale(1.2);
+  border: 2rpx solid #fff;
+}
+
+.systolic .abnormal .point-dot {
+  background-color: #d32f2f;
+  box-shadow: 0 0 6rpx rgba(244, 67, 54, 0.8);
+}
+
+.diastolic .abnormal .point-dot {
+  background-color: #1976d2;
+  box-shadow: 0 0 6rpx rgba(33, 150, 243, 0.8);
+}
+
+.heart-rate .abnormal .point-dot {
+  background-color: #e65100;
+  box-shadow: 0 0 6rpx rgba(255, 152, 0, 0.8);
+}
+
+.blood-glucose .abnormal .point-dot {
+  background-color: #7b1fa2;
+  box-shadow: 0 0 6rpx rgba(156, 39, 176, 0.8);
+}
+
+.abnormal-marker {
+  position: absolute;
+  top: -24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  background-color: #f44336;
+  color: white;
+  border-radius: 50%;
+  font-size: 18rpx;
+  font-weight: bold;
+}
+
+.data-label {
+  position: absolute;
+  top: -30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 4rpx 8rpx;
+  border-radius: 6rpx;
+  font-size: 22rpx;
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40rpx;
+}
+
+.x-label {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 22rpx;
+  color: #333;
+  width: 60rpx;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.data-detail {
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-top: 20rpx;
+}
+
+.detail-date {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  color: #333;
+}
+
+.detail-data {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  flex: 1;
+  min-width: 50%;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.abnormal-item {
+  position: relative;
+}
+
+.abnormal-text {
+  color: #f44336;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+}
+
+.item-label {
+  color: #666;
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+
+.item-value {
+  color: #333;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.range-tip {
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+.legend-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rpx;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 0 20rpx;
+}
+
+.legend-color {
+  width: 24rpx;
+  height: 6rpx;
+  margin-right: 8rpx;
+}
+
+.legend-color.systolic {
+  background-color: #F44336;
+}
+
+.legend-color.diastolic {
+  background-color: #2196F3;
+}
+
+.legend-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+  margin-bottom: 60rpx;
+}
+
+.btn.full-width {
+  width: 80%;
+}
+
+.btn {
+  width: 48%;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+/* 加载样式 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.loading-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #4CAF50;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 10px;
+  color: #888;
+}
+
+/* 健康洞察卡片 */
+.insights-card {
+  background: linear-gradient(to right, #ecf9ec, #e8f5e9);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.1);
+}
+
+.insights-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #388e3c;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.insights-title::before {
+  content: "";
+  display: inline-block;
+  width: 8rpx;
+  height: 30rpx;
+  background-color: #4caf50;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+.insights-content {
+  padding: 5px 0;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+
+.insight-icon {
+  margin-right: 16rpx;
+  font-size: 32rpx;
+}
+
+.insight-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.5;
+}
+
+.insights-container {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.insights-trend {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.insights-advice {
+  font-size: 30rpx;
+  padding: 16rpx;
+  border-radius: 8rpx;
+}
+
+.insights-advice.normal {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.insights-advice.abnormal {
+  background-color: #fbe9e7;
+  color: #c62828;
+}
+
+.no-data {
+  text-align: center;
+  padding: 50rpx;
+  color: #999;
+}

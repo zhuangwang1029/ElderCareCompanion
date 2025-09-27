@@ -1,0 +1,126 @@
+/* about.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.about-container {
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  padding: 40rpx 30rpx 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 30rpx;
+  margin-bottom: 20rpx;
+  background-color: white;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.app-name {
+  font-size: 42rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  text-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);
+}
+
+.app-desc {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.version {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+.content-container {
+  padding: 0 30rpx;
+}
+
+/* 其他样式保持不变 */
+.section {
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.feature-list {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.feature-item {
+  position: relative;
+  margin-bottom: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  padding: 10rpx 10rpx 30rpx;
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 10rpx;
+}
+
+.feature-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  color: #4CAF50;
+}
+
+.feature-desc {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.footer {
+  padding: 40rpx 0;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 24rpx;
+  color: #999999;
+} 

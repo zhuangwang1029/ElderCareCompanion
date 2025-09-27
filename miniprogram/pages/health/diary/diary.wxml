@@ -1,0 +1,85 @@
+<!--pages/health/diary/diary.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">健康日记</view>
+    <view class="subtitle">记录{{currentDate === getTodayString() ? '今日' : currentDate}}的健康状况</view>
+  </view>
+
+  <view class="diary-section">
+    <view class="section-title">今日感受</view>
+    <view class="feeling-buttons">
+      <view class="feeling {{currentFeeling === 'great' ? 'active' : ''}}" bindtap="selectFeeling" data-feeling="great">
+        <text class="feeling-emoji">😊</text>
+        <text>很好</text>
+      </view>
+      <view class="feeling {{currentFeeling === 'good' ? 'active' : ''}}" bindtap="selectFeeling" data-feeling="good">
+        <text class="feeling-emoji">🙂</text>
+        <text>一般</text>
+      </view>
+      <view class="feeling {{currentFeeling === 'fair' ? 'active' : ''}}" bindtap="selectFeeling" data-feeling="fair">
+        <text class="feeling-emoji">😐</text>
+        <text>不适</text>
+      </view>
+      <view class="feeling {{currentFeeling === 'poor' ? 'active' : ''}}" bindtap="selectFeeling" data-feeling="poor">
+        <text class="feeling-emoji">😟</text>
+        <text>难受</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="diary-section">
+    <view class="section-title">健康指标</view>
+    
+    <view class="health-metrics">
+      <view class="metric-item">
+        <view class="metric-header">
+          <image src="/images/blood_pressure.png" mode="aspectFit"></image>
+          <text>血压 (mmHg)</text>
+        </view>
+        <view class="metric-input-group">
+          <input type="digit" placeholder="收缩压" value="{{bloodPressureHigh}}" bindinput="inputBloodPressureHigh" />
+          <text>/</text>
+          <input type="digit" placeholder="舒张压" value="{{bloodPressureLow}}" bindinput="inputBloodPressureLow" />
+        </view>
+      </view>
+      
+      <view class="metric-item">
+        <view class="metric-header">
+          <image src="/images/heart.png" mode="aspectFit"></image>
+          <text>心率 (次/分)</text>
+        </view>
+        <input type="digit" placeholder="请输入心率" value="{{heartRate}}" bindinput="inputHeartRate" />
+      </view>
+      
+      <view class="metric-item">
+        <view class="metric-header">
+          <image src="/images/glucose.png" mode="aspectFit"></image>
+          <text>血糖 (mmol/L)</text>
+        </view>
+        <input type="digit" placeholder="请输入血糖" value="{{bloodGlucose}}" bindinput="inputBloodGlucose" />
+      </view>
+    </view>
+  </view>
+  
+  <view class="diary-section">
+    <view class="section-title">症状记录</view>
+    <view class="symptoms-group">
+      <view class="symptom-tag {{symptoms.headache ? 'active' : ''}}" bindtap="toggleSymptom" data-type="headache">头痛</view>
+      <view class="symptom-tag {{symptoms.dizziness ? 'active' : ''}}" bindtap="toggleSymptom" data-type="dizziness">头晕</view>
+      <view class="symptom-tag {{symptoms.chest_pain ? 'active' : ''}}" bindtap="toggleSymptom" data-type="chest_pain">胸痛</view>
+      <view class="symptom-tag {{symptoms.nausea ? 'active' : ''}}" bindtap="toggleSymptom" data-type="nausea">恶心</view>
+      <view class="symptom-tag {{symptoms.insomnia ? 'active' : ''}}" bindtap="toggleSymptom" data-type="insomnia">失眠</view>
+      <view class="symptom-tag {{symptoms.cough ? 'active' : ''}}" bindtap="toggleSymptom" data-type="cough">咳嗽</view>
+      <view class="symptom-tag {{symptoms.fever ? 'active' : ''}}" bindtap="toggleSymptom" data-type="fever">发热</view>
+      <view class="symptom-tag {{symptoms.other ? 'active' : ''}}" bindtap="toggleSymptom" data-type="other">其他</view>
+    </view>
+  </view>
+  
+  <view class="diary-section">
+    <view class="section-title">备注</view>
+    <textarea placeholder="请输入备注信息..." value="{{note}}" bindinput="inputNote" maxlength="200" auto-height></textarea>
+    <view class="word-count">{{note.length}}/200</view>
+  </view>
+
+  <button class="save-btn" bindtap="saveDiary">保存记录</button>
+</view>

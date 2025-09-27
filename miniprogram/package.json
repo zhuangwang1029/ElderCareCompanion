@@ -1,0 +1,10 @@
+{
+  "name": "elder-care-companion",
+  "version": "1.0.0",
+  "description": "老年健康伴侣小程序",
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "crypto-js": "^4.2.0",
+    "utf8": "^3.0.0"
+  }
+}

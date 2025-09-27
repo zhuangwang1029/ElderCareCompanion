@@ -1,0 +1,10 @@
+{
+  "name": "processLLM",
+  "version": "1.0.0",
+  "description": "处理大模型请求的云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "axios": "^0.27.2"
+  }
+}

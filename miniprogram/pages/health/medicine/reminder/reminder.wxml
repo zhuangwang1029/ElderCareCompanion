@@ -1,0 +1,124 @@
+<view class="container">
+  <view class="header">
+    <view class="title">提醒设置</view>
+    <view class="subtitle">{{medicineName}}的服药提醒</view>
+  </view>
+
+  <view class="reminder-section">
+    <view class="section-title">提醒时间</view>
+    
+    <!-- 预设时间点 -->
+    <view class="preset-times" wx:if="{{timeSelected}}">
+      <view class="time-item {{timeSelected.morning ? 'active' : ''}}" bindtap="toggleTime" data-time="morning">
+        <view class="time-name">早餐</view>
+        <view class="time-value">
+          <picker mode="time" value="{{morningTime}}" bindchange="changeTime" data-time="morning">
+            {{morningTime}}
+          </picker>
+        </view>
+      </view>
+      
+      <view class="time-item {{timeSelected.noon ? 'active' : ''}}" bindtap="toggleTime" data-time="noon">
+        <view class="time-name">午餐</view>
+        <view class="time-value">
+          <picker mode="time" value="{{noonTime}}" bindchange="changeTime" data-time="noon">
+            {{noonTime}}
+          </picker>
+        </view>
+      </view>
+      
+      <view class="time-item {{timeSelected.evening ? 'active' : ''}}" bindtap="toggleTime" data-time="evening">
+        <view class="time-name">晚餐</view>
+        <view class="time-value">
+          <picker mode="time" value="{{eveningTime}}" bindchange="changeTime" data-time="evening">
+            {{eveningTime}}
+          </picker>
+        </view>
+      </view>
+      
+      <view class="time-item {{timeSelected.bedtime ? 'active' : ''}}" bindtap="toggleTime" data-time="bedtime">
+        <view class="time-name">睡前</view>
+        <view class="time-value">
+          <picker mode="time" value="{{bedtimeTime}}" bindchange="changeTime" data-time="bedtime">
+            {{bedtimeTime}}
+          </picker>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 自定义时间点 -->
+    <view class="custom-times" wx:if="{{customTimes.length > 0}}">
+      <view class="section-subtitle">自定义时间</view>
+      <view class="custom-time-item" wx:for="{{customTimes}}" wx:key="index">
+        <view class="time-value">
+          <picker mode="time" value="{{item}}" bindchange="changeCustomTime" data-index="{{index}}">
+            {{item}}
+          </picker>
+        </view>
+        <view class="delete-btn" bindtap="deleteCustomTime" data-index="{{index}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="reminder-section">
+    <view class="section-title">提醒方式</view>
+    <view class="reminder-types">
+      <view class="reminder-type {{reminderType === 'notification' ? 'active' : ''}}" 
+            bindtap="setReminderType" data-type="notification">
+        <image class="type-icon" src="/images/notification.png" mode="aspectFit"></image>
+        <view class="type-name">通知提醒</view>
+      </view>
+      
+      <view class="reminder-type {{reminderType === 'voice' ? 'active' : ''}}" 
+            bindtap="setReminderType" data-type="voice">
+        <image class="type-icon" src="/images/voice_reminder.png" mode="aspectFit"></image>
+        <view class="type-name">语音提醒</view>
+      </view>
+      
+      <view class="reminder-type {{reminderType === 'both' ? 'active' : ''}}" 
+            bindtap="setReminderType" data-type="both">
+        <image class="type-icon" src="/images/both_reminder.png" mode="aspectFit"></image>
+        <view class="type-name">双重提醒</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="reminder-section">
+    <view class="section-title">提醒提前量</view>
+    <view class="advance-setting">
+      <view class="slider-container">
+        <slider 
+          min="0" 
+          max="30" 
+          value="{{advanceMinutes}}" 
+          show-value 
+          block-size="24" 
+          activeColor="#4CAF50"
+          bindchange="setAdvanceMinutes"></slider>
+      </view>
+      <view class="advance-desc">提前 {{advanceMinutes}} 分钟提醒</view>
+    </view>
+  </view>
+
+  <view class="reminder-section">
+    <view class="section-title">其他设置</view>
+    <view class="switch-item">
+      <view class="switch-label">允许重复提醒</view>
+      <switch color="#4CAF50" checked="{{allowRepeat}}" bindchange="toggleRepeat"></switch>
+    </view>
+    <view class="repeat-setting" wx:if="{{allowRepeat}}">
+      <view class="repeat-label">未服用时，每隔</view>
+      <picker bindchange="setRepeatInterval" value="{{repeatIntervalIndex}}" range="{{repeatIntervals}}">
+        <view class="picker">
+          {{repeatIntervals[repeatIntervalIndex]}}
+        </view>
+      </picker>
+      <view class="repeat-label">分钟重复提醒</view>
+    </view>
+  </view>
+
+  <view class="buttons">
+    <button class="cancel-btn" bindtap="cancel">取消</button>
+    <button class="save-btn" bindtap="saveSettings">保存</button>
+  </view>
+</view>

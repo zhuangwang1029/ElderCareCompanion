@@ -1,0 +1,5 @@
+<view class="base-page {{darkMode ? 'dark-mode' : ''}}" style="--app-font-size: {{fontSize === 'small' ? '14px' : fontSize === 'large' ? '18px' : '16px'}}">
+  <view class="page-container {{darkMode ? 'dark-mode' : ''}}">
+    <slot></slot>
+  </view>
+</view>

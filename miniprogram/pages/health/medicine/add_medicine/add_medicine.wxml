@@ -1,0 +1,112 @@
+<view class="container">
+  <view class="form-group">
+    <view class="form-label">药品名称</view>
+    <input class="form-input" placeholder="请输入药品名称" value="{{name}}" bindinput="inputName" />
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">服用剂量</view>
+    <view class="dose-input">
+      <input class="form-input" type="digit" placeholder="请输入剂量数值" value="{{dosageValue}}" bindinput="inputDosageValue" />
+      <picker bindchange="selectDosageUnit" value="{{dosageUnitIndex}}" range="{{dosageUnits}}">
+        <view class="unit-select">
+          <text>{{dosageUnits[dosageUnitIndex]}}</text>
+          <view class="select-arrow"></view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">服用频率</view>
+    <picker bindchange="selectFrequency" value="{{frequencyIndex}}" range="{{frequencies}}">
+      <view class="form-select">
+        <text>{{frequencies[frequencyIndex]}}</text>
+        <view class="select-arrow"></view>
+      </view>
+    </picker>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">服用时间</view>
+    <view class="time-tags">
+      <view class="time-tag {{timeSelected.morning ? 'selected' : ''}}" bindtap="toggleTime" data-time="morning">
+        早餐
+      </view>
+      <view class="time-tag {{timeSelected.noon ? 'selected' : ''}}" bindtap="toggleTime" data-time="noon">
+        午餐
+      </view>
+      <view class="time-tag {{timeSelected.evening ? 'selected' : ''}}" bindtap="toggleTime" data-time="evening">
+        晚餐
+      </view>
+      <view class="time-tag {{timeSelected.bedtime ? 'selected' : ''}}" bindtap="toggleTime" data-time="bedtime">
+        睡前
+      </view>
+    </view>
+    
+    <view class="custom-time-section" wx:if="{{showCustomTime}}">
+      <view class="custom-time-item" wx:for="{{customTimes}}" wx:key="index">
+        <picker mode="time" value="{{item}}" bindchange="changeCustomTime" data-index="{{index}}">
+          <view class="time-picker">{{item}}</view>
+        </picker>
+        <view class="delete-time" bindtap="deleteCustomTime" data-index="{{index}}">删除</view>
+      </view>
+      
+      <view class="add-time" bindtap="addCustomTime">+ 添加自定义时间</view>
+    </view>
+    
+    <view class="custom-time-toggle" bindtap="toggleCustomTime">
+      {{showCustomTime ? '收起自定义时间' : '+ 添加自定义时间'}}
+    </view>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">服用说明</view>
+    <picker bindchange="selectInstruction" value="{{instructionIndex}}" range="{{instructions}}">
+      <view class="form-select">
+        <text>{{instructions[instructionIndex]}}</text>
+        <view class="select-arrow"></view>
+      </view>
+    </picker>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">药品描述 (选填)</view>
+    <textarea class="form-textarea" placeholder="请输入药品描述，如颜色、功效等" value="{{description}}" bindinput="inputDescription"></textarea>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">提醒方式</view>
+    <view class="reminder-options">
+      <view class="reminder-option {{reminderType === 'notification' ? 'selected' : ''}}" bindtap="selectReminderType" data-type="notification">
+        <view class="option-icon">🔔</view>
+        <view>通知提醒</view>
+      </view>
+      <view class="reminder-option {{reminderType === 'voice' ? 'selected' : ''}}" bindtap="selectReminderType" data-type="voice">
+        <view class="option-icon">🔊</view>
+        <view>语音提醒</view>
+      </view>
+      <view class="reminder-option {{reminderType === 'both' ? 'selected' : ''}}" bindtap="selectReminderType" data-type="both">
+        <view class="option-icon">📱</view>
+        <view>双重提醒</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="form-group">
+    <view class="form-label">库存量 (选填)</view>
+    <view class="stock-input">
+      <input class="form-input" type="number" placeholder="剩余数量" value="{{stock}}" bindinput="inputStock" />
+      <view class="stock-warning">
+        <text>低于</text>
+        <input class="stock-threshold" type="number" placeholder="10" value="{{stockThreshold}}" bindinput="inputStockThreshold" />
+        <text>提醒</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="buttons">
+    <button class="btn btn-cancel" bindtap="cancel">取消</button>
+    <button class="btn btn-save" bindtap="saveMedicine">保存</button>
+  </view>
+</view>

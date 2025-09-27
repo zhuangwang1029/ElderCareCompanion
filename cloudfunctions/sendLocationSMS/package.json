@@ -1,0 +1,10 @@
+{
+  "name": "sendLocationSMS",
+  "version": "1.0.0",
+  "description": "发送位置短信服务",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "tencentcloud-sdk-nodejs": "^4.0.0"
+  }
+}

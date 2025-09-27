@@ -1,0 +1,302 @@
+/**index.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  background-color: #f8f8f8;
+}
+
+/* 欢迎卡片样式 */
+.welcome-card {
+  background-color: #E8F5E9;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  border-left: 10rpx solid #4CAF50;
+  margin-bottom: 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.1);
+}
+
+/* 功能卡片和语音卡片通用样式 */
+.function-card, .voice-card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 标题样式 */
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  color: #333333;
+}
+
+/* 副标题样式 */
+.subtitle {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 36rpx;
+  color: #333333;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+/* 副标题左侧装饰 */
+.subtitle:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  height: 36rpx;
+  width: 8rpx;
+  background-color: #4CAF50;
+  border-radius: 4rpx;
+}
+
+/* 问候语样式 */
+.greeting {
+  font-size: 36rpx;
+  color: #555555;
+}
+
+/* X形布局样式 */
+.x-layout {
+  position: relative;
+  height: 600rpx;
+  margin: 20rpx 0 40rpx;
+}
+
+/* 四个角落的功能项 */
+.function-corner {
+  position: absolute;
+  width: 180rpx;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F9F9F9;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  transition: all 0.3s;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 左上角位置 */
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+/* 右上角位置 */
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+/* 左下角位置 */
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+/* 右下角位置 */
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+/* 中心语音助手样式 */
+.function-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.center-circle {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 24rpx rgba(76, 175, 80, 0.3);
+  transition: all 0.3s;
+}
+
+.voice-icon {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 10rpx;
+}
+
+.center-text {
+  color: white;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+/* 中心悬停效果 */
+.center-hover {
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* 调整功能图标大小 */
+.function-corner .function-icon {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 调整功能名称大小 */
+.function-corner .function-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* 旧的功能网格样式（保留为兼容） */
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40rpx;
+}
+
+/* 功能项样式（保留为兼容） */
+.function-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F9F9F9;
+  border-radius: 20rpx;
+  padding: 50rpx 0;
+  transition: all 0.3s;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 功能项悬停效果 */
+.item-hover {
+  background-color: #F0F0F0;
+  transform: scale(0.98);
+}
+
+/* 功能图标样式 */
+.function-icon {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+/* 功能名称样式 */
+.function-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* 语音按钮样式 */
+.voice-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2196F3;
+  border-radius: 100rpx;
+  padding: 30rpx;
+  color: white;
+  font-size: 38rpx;
+  font-weight: bold;
+  box-shadow: 0 6rpx 20rpx rgba(33, 150, 243, 0.3);
+  margin: 20rpx 0;
+  border: none;
+  transition: all 0.3s;
+}
+
+/* 录音中的按钮状态 */
+.voice-button.recording {
+  background-color: #F44336;
+  animation: recording-pulse 1.2s infinite;
+}
+
+@keyframes recording-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 语音按钮悬停/按压效果 */
+.voice-button-hover {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 10rpx rgba(33, 150, 243, 0.2);
+}
+
+/* 语音麦克风图标 */
+.voice-mic-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+}
+
+/* 语音识别文本 */
+.voice-text {
+  text-align: center;
+  background-color: #F5F5F5;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #333;
+}
+
+/* 语音提示文本 */
+.voice-tips {
+  text-align: center;
+  color: #888888;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+}
+
+.record-card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.record-options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20rpx;
+}
+
+.record-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 40rpx;
+  background-color: #F9F9F9;
+  border-radius: 16rpx;
+}
+
+.option-icon {
+  font-size: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+.option-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
