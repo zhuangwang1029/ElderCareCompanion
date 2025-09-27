@@ -1,5 +1,8 @@
 # LeWan - Elderly Health Companion WeChat Mini Program
 
+## Note
+服务器、语音识别等功能未续费维护，因此项目应该多数功能已经无效，仅页面
+
 ## Developers
 - **Aaron Xu (徐浩然)**
 - **Wenda Yu (于闻达)**
